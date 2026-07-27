@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Report Summarizer - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="medicine.html" class="nav-link">Medicine</a></li>
+        <li><a href="symptom.html" class="nav-link">Symptoms</a></li>
+        <li><a href="routine.html" class="nav-link">Routine</a></li>
+        <li><a href="report.html" class="nav-link active">Report</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="module-wrapper">
+    <div class="container">
+      
+      <div class="module-header fade-in">
+        <h1 class="module-title">AI Medical Report Summarizer</h1>
+        <p class="module-subtitle">Translate complex lab panels, discharge summaries, or doctor's clinical notes into actionable, jargon-free patient insights.</p>
+      </div>
+
+      <!-- Main Input Card -->
+      <div class="report-card fade-in">
+        
+        <!-- Input Mode Selector -->
+        <div class="input-mode-tabs">
+          <button type="button" class="mode-tab active" data-mode="text">📝 Paste Report Text</button>
+          <button type="button" class="mode-tab" data-mode="file">📄 Upload Lab File (PDF/Image)</button>
+        </div>
+
+        <!-- Sample Report Quick Loaders -->
+        <div class="sample-pills-wrapper">
+          <span class="sample-label">Try Sample Data:</span>
+          <button type="button" class="sample-pill" data-sample="lipid">🫀 Lipid Panel</button>
+          <button type="button" class="sample-pill" data-sample="metabolic">🩸 Comprehensive Metabolic</button>
+          <button type="button" class="sample-pill" data-sample="cbc">🔬 CBC Blood Count</button>
+        </div>
+
+        <form onsubmit="return false;">
+          <!-- Text Mode Area -->
+          <div id="textModeContainer" class="mode-container active">
+            <textarea id="reportInput" class="input-field report-textarea" placeholder="Paste your medical report text here (e.g. Fasting Glucose 115 mg/dL, HbA1c 6.1%, Total Cholesterol 210 mg/dL, Triglycerides 160 mg/dL)..."></textarea>
+          </div>
+
+          <!-- File Upload Dropzone Mode -->
+          <div id="fileModeContainer" class="mode-container">
+            <div class="dropzone" id="dropzone">
+              <div class="dropzone-icon">☁️</div>
+              <p class="dropzone-text"><strong>Click to upload</strong> or drag & drop medical records</p>
+              <p class="dropzone-sub">PDF, PNG, JPG, or DICOM summaries up to 10MB</p>
+              <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg" style="display: none;">
+              <div id="fileNameDisplay" class="file-name-tag"></div>
+            </div>
+          </div>
+
+          <button type="button" id="summarizeBtn" class="btn btn-primary btn-full">
+            Summarize Report with AI →
+          </button>
+        </form>
+
+      </div>
+
+      <!-- Loading State Spinner -->
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p class="loading-text">Extracting biomarkers and translating medical jargon with Gemini AI...</p>
+      </div>
+
+      <!-- Structured Results Output -->
+      <div id="resultsContainer" class="results-container fade-in">
+        
+        <!-- Tabbed Navigation for Results -->
+        <div class="result-tabs">
+          <button type="button" class="result-tab active" data-tab="summary">📌 Executive Summary</button>
+          <button type="button" class="result-tab" data-tab="biomarkers">🧪 Biomarker Analysis</button>
+          <button type="button" class="result-tab" data-tab="actions">💬 Doctor Action Plan</button>
+        </div>
+
+        <!-- Tab 1: Executive Summary -->
+        <div id="tabSummary" class="result-tab-content active">
+          <div class="summary-overview-box">
+            <div class="summary-header">
+              <h3>📋 Plain-English Overview</h3>
+              <span class="status-badge-overall" id="overallStatusBadge">Stable Panel</span>
+            </div>
+            <p id="plainSummary">Your report text will be summarized here into clear, plain language.</p>
+          </div>
+
+          <div class="key-takeaways-card">
+            <h3>💡 Primary Key Takeaways</h3>
+            <ul id="keyTakeawaysList" class="styled-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 2: Biomarkers Visual Table -->
+        <div id="tabBiomarkers" class="result-tab-content">
+          <div class="biomarker-table-card">
+            <h3>🔬 Detailed Biomarker Breakdown</h3>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Test Biomarker</th>
+                    <th>Measured Value</th>
+                    <th>Status Gauge</th>
+                    <th>Clinical Meaning</th>
+                  </tr>
+                </thead>
+                <tbody id="biomarkerTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Action Plan & Questions -->
+        <div id="tabActions" class="result-tab-content">
+          <div class="questions-card">
+            <h3>💬 Questions for Your Doctor Visit</h3>
+            <p class="questions-subtitle">Check off these questions as you discuss them with your physician:</p>
+            <div id="questionsChecklist" class="checklist-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Safety Disclaimer Banner -->
+        <div class="medical-disclaimer-box">
+          ⚠️ <strong>Medical Disclaimer:</strong> This summary is generated by AI for educational purposes only and does not replace professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider regarding your test results.
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Developer Portfolio Demo.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/report.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Symptom Checker - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/symptom.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="medicine.html" class="nav-link">Medicine</a></li>
+        <li><a href="symptom.html" class="nav-link active">Symptoms</a></li>
+        <li><a href="routine.html" class="nav-link">Routine</a></li>
+        <li><a href="report.html" class="nav-link">Report</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="module-wrapper">
+    <div class="container">
+      
+      <div class="module-header fade-in">
+        <h1 class="module-title">AI Symptom Checker</h1>
+        <p class="module-subtitle">Select body areas or type your symptoms to receive an instant, AI-powered triage report and potential condition match.</p>
+      </div>
+
+      <div class="symptom-grid">
+        <!-- Interactive Selector & Input Card -->
+        <div class="symptom-card fade-in">
+          
+          <div class="card-section-title">
+            <span>1</span> Pick Body Area or Preset Symptoms
+          </div>
+
+          <!-- Body Region Quick Selector -->
+          <div class="body-regions">
+            <button type="button" class="region-btn active" data-region="Head & Neck">🧠 Head & Neck</button>
+            <button type="button" class="region-btn" data-region="Chest & Heart">🫀 Chest & Heart</button>
+            <button type="button" class="region-btn" data-region="Abdomen & Gut">🫁 Abdomen & Stomach</button>
+            <button type="button" class="region-btn" data-region="Muscles & Joints">🦴 Arms & Legs</button>
+            <button type="button" class="region-btn" data-region="General & Systemic">🌡️ General / Fever</button>
+          </div>
+
+          <!-- Dynamic Preset Chips -->
+          <div id="chipContainer" class="symptom-chips">
+            <span class="chip" data-symptom="Severe Throbbing Headache">Severe Headache</span>
+            <span class="chip" data-symptom="Dizziness or Lightheadedness">Dizziness</span>
+            <span class="chip" data-symptom="Sore Throat with Swallowing Pain">Sore Throat</span>
+            <span class="chip" data-symptom="Sinus Pressure and Congestion">Sinus Pressure</span>
+          </div>
+
+          <form onsubmit="return false;" style="margin-top: 24px;">
+            <div class="card-section-title">
+              <span>2</span> Describe Your Symptoms & Duration
+            </div>
+            
+            <textarea id="symptomInput" class="input-field symptom-textarea" placeholder="Describe what you feel (e.g., Dull headache on the left side for 2 days, worse in the morning)..."></textarea>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="durationSelect">Duration</label>
+                <select id="durationSelect" class="select-field">
+                  <option value="Less than 24 hours">Less than 24 hours</option>
+                  <option value="1 to 3 days">1 to 3 days</option>
+                  <option value="4 to 7 days">4 to 7 days</option>
+                  <option value="More than a week">More than a week</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="severitySelect">Severity Level</label>
+                <select id="severitySelect" class="select-field">
+                  <option value="Mild (Noticeable but easy to ignore)">Mild</option>
+                  <option value="Moderate (Interferes with daily tasks)">Moderate</option>
+                  <option value="Severe (Unbearable / Restricting)">Severe</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" id="analyzeBtn" class="btn btn-primary btn-full">
+              Analyze Symptoms with AI →
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- Loading Spinner State -->
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p class="loading-text">Analyzing reported symptoms against clinical databases...</p>
+      </div>
+
+      <!-- Analysis Results Section -->
+      <div id="resultsContainer" class="results-container fade-in">
+        
+        <!-- Risk Assessment Banner -->
+        <div id="urgencyCard" class="urgency-banner urgency-low">
+          <div class="urgency-header">
+            <div class="urgency-icon" id="urgencyIcon">🟢</div>
+            <div>
+              <span class="urgency-badge" id="urgencyBadge">Low Urgency</span>
+              <h3 id="urgencyTitle" class="urgency-title">Self-Care & Home Monitoring Suggested</h3>
+            </div>
+          </div>
+          <p id="urgencyText" class="urgency-desc">Your symptoms appear manageable with rest and home care. Follow up with a physician if symptoms worsen.</p>
+        </div>
+
+        <div class="results-grid">
+          <!-- Possible Conditions -->
+          <div class="results-card">
+            <h3>🔍 Potential Conditions Identified</h3>
+            <div id="conditionsList" class="conditions-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Recommended Next Steps -->
+          <div class="results-card">
+            <h3>📋 Recommended Next Steps</h3>
+            <ul id="recommendationsList" class="action-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Emergency Red Flags Box -->
+        <div class="warning-box">
+          🚨 <strong>When to seek immediate emergency care:</strong> If you experience severe chest pain, sudden numbness/weakness on one side of your body, extreme difficulty breathing, or sudden loss of consciousness, call local emergency services immediately.
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Developer Portfolio Demo.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/symptom.js"></script>
+</body>
+</html>

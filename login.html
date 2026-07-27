@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In / Sign Up - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="login.html" class="btn btn-primary">Sign In</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Auth Wrapper -->
+  <main class="auth-wrapper">
+    <div class="auth-container fade-in">
+      
+      <!-- Toggle Tabs -->
+      <div class="auth-toggle">
+        <button class="toggle-btn active" id="loginTab" type="button">Sign In</button>
+        <button class="toggle-btn" id="signupTab" type="button">Sign Up</button>
+      </div>
+
+      <!-- Global Alert Container -->
+      <div id="alertBox" class="alert-box"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form">
+        <div class="form-header">
+          <h2>Welcome Back</h2>
+          <p>Enter your credentials to access your portal</p>
+        </div>
+
+        <div class="input-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="input-field-wrapper">
+            <input type="email" id="loginEmail" class="input-field" placeholder="name@example.com" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="loginPassword">Password</label>
+          <div class="input-field-wrapper">
+            <input type="password" id="loginPassword" class="input-field" placeholder="password" required>
+            <button type="button" class="toggle-password">Show</button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="rememberMe"> Remember me
+          </label>
+          <a href="#" class="forgot-link" onclick="alert('Demo feature: Use demo@pulseai.com / password123'); return false;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Sign In</button>
+      </form>
+
+      <!-- Sign Up Form (Initially Hidden) -->
+      <form id="signupForm" class="auth-form hidden">
+        <div class="form-header">
+          <h2>Create Account</h2>
+          <p>Sign up to start using PulseAI decision tools</p>
+        </div>
+
+        <div class="input-group">
+          <label for="signupName">Full Name</label>
+          <div class="input-field-wrapper">
+            <input type="text" id="signupName" class="input-field" placeholder="Soumyadeep" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="signupEmail">Email Address</label>
+          <div class="input-field-wrapper">
+            <input type="email" id="signupEmail" class="input-field" placeholder="name@example.com" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="signupPassword">Password</label>
+          <div class="input-field-wrapper">
+            <input type="password" id="signupPassword" class="input-field" placeholder="At least 6 characters" required>
+            <button type="button" class="toggle-password">Show</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Create Account</button>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Portfolio Demo Project.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

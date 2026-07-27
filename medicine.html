@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Information - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/medicine.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="medicine.html" class="nav-link active">Medicine</a></li>
+        <li><a href="symptom.html" class="nav-link">Symptoms</a></li>
+        <li><a href="routine.html" class="nav-link">Routine</a></li>
+        <li><a href="report.html" class="nav-link">Report</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="module-wrapper">
+    <div class="container">
+      
+      <div class="module-header fade-in">
+        <h1 class="module-title">Medicine Information Search</h1>
+        <p class="module-subtitle">Lookup clinical indications, dosage guidelines, interactions, and precautions using Gemini AI.</p>
+      </div>
+
+    <!-- Search Card (No Form Tag = Zero Page Reloads) -->
+    <div class="search-card fade-in">
+    <div style="display: flex; gap: 16px;">
+        <input 
+        type="text" 
+        id="medicineInput" 
+        class="input-field" 
+        placeholder="Enter medicine name (e.g. Amoxicillin, Ibuprofen)..." 
+        />
+        <button type="button" id="searchBtn" class="btn btn-primary">Search Drug →</button>
+    </div>
+    </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p class="loading-text">Analyzing drug data with Gemini AI...</p>
+      </div>
+
+      <!-- Results Display Container -->
+      <div id="resultsContainer" class="results-container fade-in">
+        
+        <!-- Hero Header Card -->
+        <div class="medicine-hero-card">
+          <div class="medicine-hero-title">
+            <h2 id="medName">Medicine Name</h2>
+            <p id="medCategory">Category / Drug Class</p>
+          </div>
+          <div class="logo-icon" style="width: 56px; height: 56px; font-size: 1.8rem; background: var(--primary);">💊</div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="info-cards-grid">
+          
+          <!-- Uses Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">🎯</div>
+              <h3>Primary Uses</h3>
+            </div>
+            <ul id="medUses"></ul>
+          </div>
+
+          <!-- Dosage Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">⏱️</div>
+              <h3>Dosage Guidelines</h3>
+            </div>
+            <p id="medDosage"></p>
+          </div>
+
+          <!-- Side Effects Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">⚠️</div>
+              <h3>Possible Side Effects</h3>
+            </div>
+            <ul id="medSideEffects"></ul>
+          </div>
+
+          <!-- Precautions Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">🛡️</div>
+              <h3>Precautions</h3>
+            </div>
+            <ul id="medPrecautions"></ul>
+          </div>
+
+          <!-- Drug Interactions Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">⚡</div>
+              <h3>Drug Interactions</h3>
+            </div>
+            <ul id="medInteractions"></ul>
+          </div>
+
+          <!-- Storage Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon">📦</div>
+              <h3>Storage Advice</h3>
+            </div>
+            <p id="medStorage"></p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Portfolio Demo.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/medicine.js"></script>
+</body>
+</html>

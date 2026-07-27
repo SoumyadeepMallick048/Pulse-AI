@@ -1,0 +1,191 @@
+/* css/medicine.css */
+
+.module-wrapper {
+  padding: 40px 0 80px;
+  min-height: calc(100vh - 80px - 70px);
+}
+
+.module-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.module-title {
+  font-size: 2.25rem;
+  color: var(--secondary);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.module-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* Search Box Form */
+.search-card {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.search-form {
+  display: flex;
+  gap: 16px;
+}
+
+.search-form .input-field {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 1rem;
+}
+
+/* Loading State Spinner */
+.loading-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 16px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--primary-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Results Display Grid */
+.results-container {
+  display: none;
+}
+
+.medicine-hero-card {
+  background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 100%);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.medicine-hero-title h2 {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 6px;
+}
+
+.medicine-hero-title p {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.info-card-header h3 {
+  font-size: 1.1rem;
+  color: var(--secondary);
+}
+
+.info-card ul {
+  padding-left: 20px;
+  color: var(--text-dark);
+}
+
+.info-card li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.info-card p {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+  }
+}
+
+/* css/medicine.css */
+
+/* Expand the search input field specifically for the medicine page */
+.search-card .input-field {
+  padding: 16px 20px;       /* Makes the box taller and roomier */
+  font-size: 1.15rem;       /* Makes the typed text & placeholder larger */
+  min-height: 56px;         /* Sets a solid height for the input box */
+  border-radius: 10px;      /* Slightly rounds the corners */
+}
+
+/* Expand the search card container to make it wider */
+.search-card {
+  max-width: 850px;         /* Increases overall width from 700px/760px */
+  padding: 32px;            /* Adds generous spacing inside the card */
+}
+
+/* (Optional) If your form layout has the button next to or below it */
+.search-card form {
+  display: flex;
+  gap: 12px;               /* Keeps a clean gap between input and button */
+  flex-direction: column;  /* Stacked vertical layout (change to row if side-by-side) */
+}

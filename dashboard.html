@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+        <li><a href="medicine.html" class="nav-link">Medicine</a></li>
+        <li><a href="symptom.html" class="nav-link">Symptoms</a></li>
+        <li><a href="routine.html" class="nav-link">Routine</a></li>
+        <li><a href="report.html" class="nav-link">Report</a></li>
+        <li><button id="logoutBtn" class="btn btn-outline" style="padding: 8px 16px;">Logout</button></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Content -->
+  <main class="dashboard-wrapper">
+    <div class="container">
+      
+      <!-- Welcome Banner -->
+      <section class="welcome-banner fade-in">
+        <div class="welcome-text">
+          <h1>Welcome back, <span id="userName">User</span> 👋</h1>
+          <p>Access your AI clinical support modules or review past decision logs.</p>
+        </div>
+        <div class="user-badge">
+          <div class="avatar" id="userAvatar">U</div>
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem;" id="userEmail">user@example.com</div>
+            <div style="font-size: 0.75rem; opacity: 0.8;">Active Session</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid Content -->
+      <div class="dashboard-grid fade-in">
+        
+        <!-- Left: Feature Modules Grid -->
+        <section>
+          <h2 class="modules-header">Clinical Support Modules</h2>
+          <div class="modules-grid">
+            
+            <!-- Module 1 -->
+            <a href="medicine.html" class="module-card">
+              <div class="module-card-icon">💊</div>
+              <h3>Medicine Information</h3>
+              <p>Search any medication for indications, contraindications, and dosage guidelines.</p>
+              <span class="module-card-action">Launch Module →</span>
+            </a>
+
+            <!-- Module 2 -->
+            <a href="symptom.html" class="module-card">
+              <div class="module-card-icon">🩺</div>
+              <h3>Symptom Checker</h3>
+              <p>Enter patient symptoms for intelligent triage and consultation urgency flags.</p>
+              <span class="module-card-action">Launch Module →</span>
+            </a>
+
+            <!-- Module 3 -->
+            <a href="routine.html" class="module-card">
+              <div class="module-card-icon">🥗</div>
+              <h3>Healthy Routine Plan</h3>
+              <p>Generate personalized nutrition, hydration, and active living schedules.</p>
+              <span class="module-card-action">Launch Module →</span>
+            </a>
+
+            <!-- Module 4 -->
+            <a href="report.html" class="module-card">
+              <div class="module-card-icon">📑</div>
+              <h3>Medical Report Reader</h3>
+              <p>Upload lab results or diagnostic images for instant plain-English summaries.</p>
+              <span class="module-card-action">Launch Module →</span>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- Right: Sidebar Activity Log -->
+        <aside class="sidebar-section">
+          <div class="widget-card">
+            <div class="widget-title">
+              <span>Recent Activity</span>
+              <span style="font-size: 0.8rem; color: var(--primary); font-weight: normal;">Live Logs</span>
+            </div>
+            <div class="activity-list" id="activityList">
+              <!-- Dynamically populated by dashboard.js -->
+            </div>
+          </div>
+
+          <div class="widget-card" style="background: var(--primary-light); border-color: rgba(0, 102, 255, 0.2);">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">💡 Portfolio Note</h4>
+            <p style="font-size: 0.85rem; color: var(--secondary);">
+              This app interacts directly with Google's Gemini API on the client side. Select any module above to test real-time prompt generation.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Developer Portfolio Demo.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Routine - PulseAI</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/routine.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">+</div>
+        PulseAI
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="medicine.html" class="nav-link">Medicine</a></li>
+        <li><a href="symptom.html" class="nav-link">Symptoms</a></li>
+        <li><a href="routine.html" class="nav-link active">Routine</a></li>
+        <li><a href="report.html" class="nav-link">Report</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="module-wrapper">
+    <div class="container">
+      
+      <div class="module-header fade-in">
+        <h1 class="module-title">Healthy Routine Generator</h1>
+        <p class="module-subtitle">Build a personalized daily routine aligned with your health goals, lifestyle, and circadian rhythms.</p>
+      </div>
+
+      <!-- Routine Generator Form Card -->
+      <div class="routine-card fade-in">
+        <form onsubmit="return false;">
+          <div class="form-grid">
+            
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--secondary); margin-bottom: 6px; display: block;">Primary Health Goal</label>
+              <select id="goalInput" class="select-field">
+                <option value="Energy Boost & Focus">Energy Boost & Focus</option>
+                <option value="Weight Loss & Metabolic Health">Weight Loss & Metabolic Health</option>
+                <option value="Better Sleep Quality">Better Sleep Quality</option>
+                <option value="Stress Reduction & Mindfulness">Stress Reduction & Mindfulness</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--secondary); margin-bottom: 6px; display: block;">Activity Level</label>
+              <select id="activityInput" class="select-field">
+                <option value="Sedentary (Desk Job)">Sedentary (Desk Job)</option>
+                <option value="Moderate (2-3 Workouts/week)">Moderate (2-3 Workouts/week)</option>
+                <option value="Active (Daily exercise)">Active (Daily exercise)</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--secondary); margin-bottom: 6px; display: block;">Diet Preference</label>
+              <select id="dietInput" class="select-field">
+                <option value="Balanced / Whole Foods">Balanced / Whole Foods</option>
+                <option value="Vegetarian / Vegan">Vegetarian / Vegan</option>
+                <option value="High Protein">High Protein</option>
+                <option value="Low Carb">Low Carb</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--secondary); margin-bottom: 6px; display: block;">Target Wake-up Time</label>
+              <select id="wakeTimeInput" class="select-field">
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="07:00 AM" selected>07:00 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button type="button" id="generateBtn" class="btn btn-primary" style="width: 100%;">Generate Daily Plan →</button>
+        </form>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p class="loading-text">Designing your custom wellness schedule with Gemini AI...</p>
+      </div>
+
+      <!-- Results Display Container -->
+      <div id="resultsContainer" class="results-container fade-in">
+        
+        <h2 id="routineTitle" style="font-size: 1.5rem; color: var(--secondary); margin-bottom: 24px; text-align: center;">Customized Health Routine</h2>
+
+        <!-- Timeline Cards -->
+        <div class="timeline-grid">
+          
+          <!-- Morning Card -->
+          <div class="time-card morning">
+            <h3 class="time-title">🌅 Morning</h3>
+            <ul id="morningList"></ul>
+          </div>
+
+          <!-- Afternoon Card -->
+          <div class="time-card afternoon">
+            <h3 class="time-title">☀️ Afternoon</h3>
+            <ul id="afternoonList"></ul>
+          </div>
+
+          <!-- Evening Card -->
+          <div class="time-card evening">
+            <h3 class="time-title">🌙 Evening</h3>
+            <ul id="eveningList"></ul>
+          </div>
+
+        </div>
+
+        <!-- Insights Grid -->
+        <div class="insights-grid">
+          
+          <div class="insight-card">
+            <h3>🥗 Nutrition Strategy</h3>
+            <ul id="dietList"></ul>
+          </div>
+
+          <div class="insight-card">
+            <h3>🎯 Key Habits to Track</h3>
+            <ul id="habitList"></ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 PulseAI Support System. Developer Portfolio Demo.</p>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/routine.js"></script>
+</body>
+</html>
